@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'app';
   distrib = [33,33,34];
   throughput = 10;
-  difficulty = 1;
+  difficulty = 0;
   started = false;
   ctr = [0,0,0];
   sent = 0;

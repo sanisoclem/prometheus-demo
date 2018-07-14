@@ -14,10 +14,10 @@ namespace web_api.Controllers
         [HttpGet]
         public ActionResult<string> Get(int difficulty)
         {
-            string retval = null;
+            string retval = "null";
             for (int i=0; i<difficulty * difficulty;i++) {
                 retval = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                    password: Gcd1Controller.data,
+                    password: Gcd1Controller.data + Guid.NewGuid().ToString(),
                     salt: System.Text.Encoding.UTF8.GetBytes("tae"),
                     prf: KeyDerivationPrf.HMACSHA1,
                     iterationCount: 10000,

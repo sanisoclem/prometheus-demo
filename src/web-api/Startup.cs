@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using App.Metrics.AspNetCore;
 
 namespace web_api
 {
@@ -26,11 +27,14 @@ namespace web_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMetrics();
+            services.AddMetricsTrackingMiddleware();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseMetricsAllMiddleware();
             app.UseDeveloperExceptionPage();
             app.UseMvc();
             app.UseSpa(a=> a.UseProxyToSpaDevelopmentServer("http://localhost:4200"));

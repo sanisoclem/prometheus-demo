@@ -1,0 +1,32 @@
+.logo {
+    img {
+        max-height: 30px;
+    }
+    padding: 0 10px;
+}
+
+.cont {
+    padding-top:20px;
+    max-width:600px;
+    margin: 0 auto;
+
+    &:not(.started) {
+        .btn-stop {
+            display:none;
+        }
+    }
+    &.started {
+        .btn-start {
+            display:none;
+        }
+    } 
+}
+
+.slider-label {
+    font-size: 0.8em;
+    font-family: monospace;
+    margin-right:20px;
+}
+.mat-slider {
+    width:100%;
+}

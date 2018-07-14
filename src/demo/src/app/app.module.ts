@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MatListModule, MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatSliderModule, MatDividerModule, MatFormFieldModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { LineChartModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpModule} from '@angular/http';
     MatDividerModule,
     MatFormFieldModule,
     MatListModule,
-    HttpModule
+    HttpClientModule,
+    LineChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,53 +4,67 @@
   </span>
   <span>Prometheus Demo</span>
 </mat-toolbar>
-
-<div class="cont mat-typography" [ngClass]="{'started': started }">
-  <mat-card class="demo">
-    <mat-card-title>Simulator</mat-card-title>
-    <mat-card-subtitle>Distribution</mat-card-subtitle>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>
-          <span class="slider-label">
-            /gcdendpoint1 
-          </span>
-          <mat-slider [(ngModel)]="distrib1"></mat-slider>
-        </mat-list-item>
-        <mat-list-item>
-          <span class="slider-label">
-            /gcdendpoint2 
-          </span>
-          <mat-slider [(ngModel)]="distrib2"></mat-slider>
-        </mat-list-item>
-        <mat-list-item>
-          <span class="slider-label">
-            /gcdendpoint3 
-          </span>
-          <mat-slider [(ngModel)]="distrib3"></mat-slider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-    <mat-card-subtitle>Load</mat-card-subtitle>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>
-          <span class="slider-label">
-            Throughput 
-          </span>
-          <mat-slider [(ngModel)]="throughput" color="primary"></mat-slider>
-        </mat-list-item>
-        <mat-list-item>
-          <span class="slider-label">
-            Difficulty
-          </span>
-          <mat-slider [(ngModel)]="difficulty" color="primary"></mat-slider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-    <mat-card-actions>
-      <button type="button" class="btn-start" mat-button (click)="start()">Start</button>
-      <button type="button" class="btn-stop" mat-button (click)="stop()">Stop</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="bg">
+  <div class="cont mat-typography" [ngClass]="{'started': started }">
+    <mat-card class="demo">
+      <mat-card-title>Simulator</mat-card-title>
+      <mat-card-subtitle>Distribution</mat-card-subtitle>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <span class="slider-label">
+              /gcdendpoint1 
+            </span>
+            <mat-slider [(ngModel)]="distrib[0]" thumbLabel="true"></mat-slider>
+          </mat-list-item>
+          <mat-list-item>
+            <span class="slider-label">
+              /gcdendpoint2 
+            </span>
+            <mat-slider [(ngModel)]="distrib[1]" thumbLabel="true"></mat-slider>
+          </mat-list-item>
+          <mat-list-item>
+            <span class="slider-label">
+              /gcdendpoint3 
+            </span>
+            <mat-slider [(ngModel)]="distrib[2]" thumbLabel="true"></mat-slider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-subtitle>Load</mat-card-subtitle>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <span class="slider-label">
+              Throughput 
+            </span>
+            <mat-slider [(ngModel)]="throughput" color="primary"></mat-slider>
+          </mat-list-item>
+          <mat-list-item>
+            <span class="slider-label">
+              Difficulty
+            </span>
+            <mat-slider [(ngModel)]="difficulty" max="10" color="primary"></mat-slider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="button" class="btn-start" mat-button (click)="start()">Start</button>
+        <button type="button" class="btn-stop" mat-button (click)="stop()">Stop</button>
+      </mat-card-actions>
+    </mat-card>
+    
+    <mat-card>
+      <mat-card-content>
+        <input type="number" readonly [value]="ctr[0]/sent"/>
+        <input type="number" readonly [value]="ctr[1]/sent"/>
+        <input type="number" readonly [value]="ctr[2]/sent"/>
+        <input type="number" readonly [value]="ctr[0]"/>
+        <input type="number" readonly [value]="ctr[1]"/>
+        <input type="number" readonly [value]="ctr[2]"/>
+        <input type="number" readonly [value]="sent"/>
+        <input type="number" readonly [value]="rcvd"/>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

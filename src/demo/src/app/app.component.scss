@@ -4,11 +4,19 @@
     }
     padding: 0 10px;
 }
+.bg {
+    background:#eee;
+    min-height: calc(100vh - 64px);
+}
 
+mat-card {
+    margin-top:20px;
+}
 .cont {
-    padding-top:20px;
+    padding-top:1px;
     max-width:600px;
     margin: 0 auto;
+    
 
     &:not(.started) {
         .btn-stop {

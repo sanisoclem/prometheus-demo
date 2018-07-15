@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'app';
-  distrib = [33,33,34];
+  distrib = [50,50,50];
   throughput = 10;
   difficulty = 0;
   started = false;
@@ -43,6 +43,10 @@ export class AppComponent {
     // -- do work if queue is not full
     if (this.sent - this.rcvd < this.maxPending) {
       const queue =  this.getNextQueue();
+      if (queue < 0) {
+        this.started = false;
+        return;
+      } 
       this.sent++;
       this.ctr[queue]++;
       this.http.get<void>('api/gcd' + (queue+1) + '?difficulty=' + this.difficulty)
@@ -55,18 +59,36 @@ export class AppComponent {
 
     // queue next execution
     setTimeout(()=> {
+      //this.randomize();
       this.work();
     },1000 * (1/(this.throughput+1)));
   }
 
   getNextQueue() : number {
-    let retval = 0;
-    for (let i=1;i<this.distrib.length;i++) {
-      if (this.ctr[i] < this.sent*(this.distrib[i]/100.0)) {
+    let retval = -1;
+    for (let i=0;i<this.distrib.length;i++) {
+      if (this.ctr[i] < this.sent*(this.distrib[i]/this.distrib.reduce((p,c)=>p+=c,0.0))) {
         retval = i;
         break;
       }
     }
+    if (retval == -1){
+      for (let i=0;i<this.distrib.length;i++) {
+        if (this.distrib[i] > 0) {
+          retval = i;
+          break;
+        }
+      }
+    }
     return retval;
+  }
+
+  randomize() {
+    if (Math.random() < 0.001) {
+      this.difficulty = (this.difficulty+ Math.floor(Math.random()*5)) % 6;
+    }
+    if (Math.random() < (0.0001 * (100-this.throughput+1))) {
+      this.throughput = ((this.throughput + Math.floor(Math.random()*50)) % 100) + 1;
+    }
   }
 }

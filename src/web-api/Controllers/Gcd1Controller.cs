@@ -18,7 +18,7 @@ namespace web_api.Controllers
         public ActionResult<string> Get(int difficulty)
         {
             string retval = "null";
-            for (int i=0; i<difficulty;i++) {
+            for (int i=0; i<difficulty*2;i++) {
                 retval = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                     password: data + Guid.NewGuid().ToString(),
                     salt: Encoding.UTF8.GetBytes("tae"),
